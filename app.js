@@ -44,12 +44,41 @@ app.post("/login", function (req, res) {
     res.render("login", { error: "userid or password is incorrect" });
   }
 });
-app.get("/create", function (req, res) {
+//register route
+app.get("/register", function (req, res) {
   res.render("create");
 });
-
+//register post 
+app.post("/register",function(req,res){
+    console.log(req.body);
+    var existAccounts = getAccountData()
+    const newAccountId = Math.floor(100000 + Math.random() * 900000)
+    existAccounts[newAccountId] = 
+    {
+        "name":req.body.name,
+        "email":req.body.email,
+        "pass":req.body.pass,
+        "num":req.body.num,
+        "age":req.body.age,
+        "gender":req.body.gen,
+        "wieght":req.body.weight,
+        "modified": "",
+        "log": {
+            "modified-field": "",
+            "date": "",
+            "doctorname": ""
+        }
+    }
+    saveAccountData(existAccounts);
+    res.render("home");
+})
+//insurance route
+app.get("/insurance", function(req,res){
+    res.render("insurance");
+})
 app.get("/profile", function (req, res) {
   res.render("Profilemed");
+  
 });
 app.listen(3000, function () {
   console.log("server spin up in port 3000");

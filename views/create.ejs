@@ -9,36 +9,41 @@
 <body>
   <div class="center">
     <h1>Create Id </h1>
-    <form method="POST" action="/login">
+    <form method="POST" action="/register">
       <div class="txt_field">
-        <input type="text" name="user name" required>
+        <input type="text" name="name" required>
         <span></span>
-        <label>User Name</label>
+        <label>Name</label>
       </div>
       <div class="txt_field">
-        <input type="number" name="pass" required>
+        <input type="email" name="email" required>
+        <span></span>
+        <label>Email</label>
+      </div>
+      <div class="txt_field">
+        <input type="password" name="pass" required>
+        <span></span>
+        <label>Password</label>
+      </div>
+      <div class="txt_field">
+        <input type="text" name="num" required>
         <span></span>
         <label>Phone number</label>
       </div>
       <div class="txt_field">
-        <input type="number" name="pass" required>
+        <input type="number" name="age" required>
         <span></span>
         <label>Age</label>
       </div>
       <div class="txt_field">
-        <input type="text" name="pass" required>
+        <input type="text" name="gen" required>
         <span></span>
         <label>Gender</label>
       </div>
       <div class="txt_field">
-        <input type="text" name="pass" required>
+        <input type="text" name="weieght" required>
         <span></span>
         <label>weight</label>
-      </div>
-      <div class="txt_field">
-        <input type="text" name="pass" required>
-        <span></span>
-        <label>Email id</label>
       </div>
       <input type="submit">
       <div class="signup_link">
@@ -47,4 +52,6 @@
     </form>
   </div>
 
-  <%- include('partials/footer') %>
+</body>
+
+</html>

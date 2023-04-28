@@ -2,68 +2,58 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const fs = require('fs');
-const dataPath = './account.json'
-const logPath = './log.json'
+const fs = require("fs");
+const dataPath = "./account.json";
+const logPath = "./log.json";
 //app
-const app =  express();
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(express.static(__dirname+"/public"));
-app.set("view engine","ejs");
-//data read file 
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(__dirname + "/public"));
+app.set("view engine", "ejs");
+//data read file
 // util functions
 const saveAccountData = (data) => {
-    const stringifyData = JSON.stringify(data)
-    fs.writeFileSync(dataPath, stringifyData)
-}
+  const stringifyData = JSON.stringify(data);
+  fs.writeFileSync(dataPath, stringifyData);
+};
 const getAccountData = () => {
-    const jsonData = fs.readFileSync(dataPath)
-    return JSON.parse(jsonData)   
-}
+  const jsonData = fs.readFileSync(dataPath);
+  return JSON.parse(jsonData);
+};
 //home port
-app.get("/", function(req,res){
-    res.render("home");
-})
+app.get("/", function (req, res) {
+  res.render("home");
+});
 
 //login port
-app.get("/login", function(req,res){
-    res.render("login",{error:""})
-})
-//login post 
-app.post("/login", function(req,res){
-    var pass = req.body.pass
-    const accounts = getAccountData()
-    var id = accounts[req.body.userid]
-    if(id != undefined){
-        if(pass === id.pass){
-            res.render("home");
-        }else{
-            res.render("login",{error:"userid or password is incorrect"});
-        }
-    }else{
-        res.render("login",{error:"userid or password is incorrect"});
+app.get("/login", function (req, res) {
+  res.render("login", { error: "" });
+});
+//login post
+app.post("/login", function (req, res) {
+  var pass = req.body.pass;
+  const accounts = getAccountData();
+  var id = accounts[req.body.userid];
+  if (id != undefined) {
+    if (pass === id.pass) {
+      res.render("home");
+    } else {
+      res.render("login", { error: "userid or password is incorrect" });
     }
-})
+  } else {
+    res.render("login", { error: "userid or password is incorrect" });
+  }
+});
+app.get("/create", function (req, res) {
+  res.render("create");
+});
 
-
-
-
-
-
-
-
-
-
-
-app.listen(3000,function(){
-    console.log("server spin up in port 3000");
-})
-
-
+app.listen(3000, function () {
+  console.log("server spin up in port 3000");
+});
 
 // code to add data to json
 //add data
-
 
 // var existAccounts = getAccountData()
 //  const date = new Date();
@@ -77,15 +67,11 @@ app.listen(3000,function(){
 // saveAccountData(existAccounts);
 // res.send({success: true, msg: 'account added successfully'})
 
-
-//code to retrive data 
+//code to retrive data
 // const accounts = getAccountData()
 //   res.send(accounts)
 
-
-
 //code to update data
-
 
 // var existAccounts = getAccountData()
 //   fs.readFile(dataPath, 'utf8', (err, data) => {
@@ -95,25 +81,17 @@ app.listen(3000,function(){
 //     res.send(`accounts with id ${accountId} has been updated`)
 //   }, true);
 
-
-
 // code to delete data
 
 // fs.readFile(dataPath, 'utf8', (err, data) => {
 //     var existAccounts = getAccountData()
 //     const userId = 738189;
-//     delete existAccounts[userId]; 
+//     delete existAccounts[userId];
 //     saveAccountData(existAccounts);
 //     res.send(`accounts with id ${userId} has been deleted`)
 //   }, true);
 
-
-
-
-
-
-
-//test 
+//test
 // const date = new Date();
 //  console.log(date)
 //  var existAccounts = getAccountData()

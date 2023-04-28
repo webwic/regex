@@ -71,4 +71,84 @@
 .register-section form {
   display: flex;
   justify-content: center;
+  padding-top: 40px;
+}
+.button {
+  background-color: antiquewhite;
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+}
+.about-section1 p {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.about-section1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  height: 600px;
+  width: 80%;
+}
+.about-section1 h1 {
+  text-align: center;
+}
+.about-section1 hr {
+  margin: 40px;
+}
+.service {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+  font-size: 22px;
+}
+.service div {
+  margin: 20px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.service h1 {
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.footer {
+  background-color: rgba(128, 128, 128, 0.435);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 300px;
+}
+.webwic {
+  color: #33333357;
+}
+.footer button {
+  background-color: antiquewhite;
+  background-color: #121212; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 7px;
 }

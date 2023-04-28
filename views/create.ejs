@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+  <div class="center">
+    <h1>Login</h1>
+    <form method="POST" action="/login">
+      <div class="txt_field">
+        <input type="text" name="userid" required>
+        <span></span>
+        <label>User Id</label>
+      </div>
+      <div class="txt_field">
+        <input type="password" name="pass" required>
+        <span></span>
+        <label>Password</label>
+      </div>
+      <div class="pass">Forgot Password?</div>
+      <input type="submit">
+      <p style="color:red"><%-error%></p>
+      <div class="signup_link">
+        Not a member? <a href="/register">Signup</a>
+      </div>
+    </form>
+  </div>
+
+  <%- include('partials/footer') %>

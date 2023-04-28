@@ -48,6 +48,9 @@ app.get("/create", function (req, res) {
   res.render("create");
 });
 
+app.get("/profile", function (req, res) {
+  res.render("Profilemed");
+});
 app.listen(3000, function () {
   console.log("server spin up in port 3000");
 });

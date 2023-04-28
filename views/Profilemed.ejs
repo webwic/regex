@@ -1,0 +1,362 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MEDDOC</title>
+	<link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+	<span style="float:right">Paper Form ID: $paperFormId</span>
+	<h2>PATIENT MEDICAL HISTORY</h2>
+
+	<section headerLabel="1. Encounter Details">
+		<table class="baseline-aligned">
+			<tr>
+				<td>Date:</td>
+				<td>
+					<encounterDate default="today" />
+				</td>
+				<td>
+					<pre>			</pre>
+				</td>
+				<td>Location:</td>
+				<td>
+					<encounterLocation default="Unknown Location" />
+				</td>
+				<td>
+					<pre>			</pre>
+				</td>
+				<td>Provider:</td>
+				<td>
+					<encounterProvider default="currentUser" role="Provider" />
+				</td>
+				<td>
+					<pre>			</pre>
+				</td>
+				<td class="type">Type:</td>
+				<td class="type">
+					<encounterType default="PATHIST" />
+				</td>
+
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="2. Patient Information">
+		<table class="baseline-aligned">
+			<tr>
+				<td>Name:</td>
+				<td>
+					<lookup class="value" expression="patient.personName" />
+				</td>
+				<td>
+					<pre>		</pre>
+				</td>
+				<td>Manual ID:</td>
+				<td>
+					<lookup class="value"
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('Old Identification Number') ) $patId #end " />
+				</td>
+				<td>
+					<pre>		</pre>
+				</td>
+				<td>Auto ID:</td>
+				<td>
+					<lookup class="value"
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('OpenMRS Identification Number') ) $patId #end" />
+				</td>
+				<td>
+					<pre>		</pre>
+				</td>
+				<td>Gender:</td>
+				<td>
+					<lookup class="value" expression="patient.gender" />
+				</td>
+			</tr>
+
+		</table>
+	</section>
+
+	<section headerLabel="3. Medical Information">
+
+		<br />
+		<fieldset>
+			<legend>Family History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>Family History of Diabetes Mellitus:</td>
+					<td>
+						<obs conceptId="140228" style="radio" answerConceptIds="1065,1066,1067" answerLabels="Yes,No,Unknown" />
+					</td>
+					<ifMode mode="ENTER">
+						<td class="lookup">
+							<lookup expression="fn.latestObs(140228).valueCoded.name" class="value" />
+						</td>
+					</ifMode>
+				</tr>
+			</table>
+		</fieldset>
+
+		<br />
+		<br />
+
+		<fieldset>
+			<legend>Past Medical History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<obsgroup groupingConceptId="161609">
+									<td>
+										Diabetes Mellitus
+									</td>
+									<td>
+										<obs conceptId="119481" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+									</td>
+									<td id="dm_date">
+										<obs conceptId="159948" id="dm" />
+									</td>
+									<ifMode mode="ENTER">
+										<td class="value">
+											<lookup complexExpression="#foreach($enc in $fn.allEncounters(null))
+								
+								#if($form == $enc.form.formId)
+								
+									#set($latestEnc = $fn.latestEncounter($enc.encounterType))
+									
+									#foreach($obs in $latestEnc.obs)
+										
+									
+												#if($obs.concept.conceptId == 119481)
+													 
+													 #foreach($obs2 in $obs.getRelatedObservations())
+														
+														#if($obs2.concept.conceptId == 119481)
+															 - $obs2.valueCoded.name - 
+														#end
+														
+														#if($obs2.concept.conceptId == 159948)
+															- $obs2.valueDatetime - 
+														#end
+														
+													 #end
+													 
+													 <br >
+													 <br >
+												#end
+												
+									#end
+
+								
+									#break
+								#end
+							#end" class="value" />
+										</td>
+									</ifMode>
+								</obsgroup>
+							</tr>
+							<tr>
+								<obsgroup groupingConceptId="161611">
+									<td>
+										Hypertension
+									</td>
+									<td>
+										<obs conceptId="161572" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+									</td>
+									<td id="htn_date">
+										<obs conceptId="159948" id="htn" />
+									</td>
+									<ifMode mode="ENTER">
+										<td class="value">
+											<lookup complexExpression="#foreach($enc in $fn.allEncounters(null))
+								
+								#if($form == $enc.form.formId)
+								
+									#set($latestEnc = $fn.latestEncounter($enc.encounterType))
+									
+									#foreach($obs in $latestEnc.obs)
+										
+									
+												#if($obs.concept.conceptId == 161572)
+													 
+													 #foreach($obs2 in $obs.getRelatedObservations())
+														
+														#if($obs2.concept.conceptId == 161572)
+															 - $obs2.valueCoded.name - 
+														#end
+														
+														#if($obs2.concept.conceptId == 159948)
+															- $obs2.valueDatetime - 
+														#end
+														
+													 #end
+													 
+													 <br >
+													 <br >
+												#end
+												
+									#end
+
+								
+									#break
+								#end
+							#end" class="value" />
+										</td>
+									</ifMode>
+								</obsgroup>
+							</tr>
+							<tr>
+								<obsgroup groupingConceptId="161610">
+									<td>
+										Myocardial Infarction
+									</td>
+									<td>
+										<obs conceptId="161608" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+									</td>
+									<td id="mi_date">
+										<obs conceptId="159948" id="mi" />
+									</td>
+									<ifMode mode="ENTER">
+										<td class="value">
+											<lookup complexExpression="#foreach($enc in $fn.allEncounters(null))
+								
+								#if($form == $enc.form.formId)
+								
+									#set($latestEnc = $fn.latestEncounter($enc.encounterType))
+									
+									#foreach($obs in $latestEnc.obs)
+										
+									
+												#if($obs.concept.conceptId == 161608)
+													 
+													 #foreach($obs2 in $obs.getRelatedObservations())
+														
+														#if($obs2.concept.conceptId == 161608)
+															 - $obs2.valueCoded.name - 
+														#end
+														
+														#if($obs2.concept.conceptId == 159948)
+															- $obs2.valueDatetime - 
+														#end
+														
+													 #end
+													 
+													 <br >
+													 <br >
+												#end
+												
+									#end
+
+								
+									#break
+								#end
+							#end" class="value" />
+										</td>
+									</ifMode>
+								</obsgroup>
+							</tr>
+							<tr>
+								<obsgroup groupingConceptId="161612">
+									<td>
+										CerebroVascular Accident
+									</td>
+									<td>
+										<obs conceptId="161564" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" />
+									</td>
+									<td id="cva_date">
+										<obs conceptId="159948" id="cva" />
+									</td>
+									<ifMode mode="ENTER">
+										<td class="value">
+											<lookup complexExpression="#foreach($enc in $fn.allEncounters(null))
+								
+								#if($form == $enc.form.formId)
+								
+									#set($latestEnc = $fn.latestEncounter($enc.encounterType))
+									
+									#foreach($obs in $latestEnc.obs)
+										
+									
+												#if($obs.concept.conceptId == 161564)
+													 
+													 #foreach($obs2 in $obs.getRelatedObservations())
+														
+														#if($obs2.concept.conceptId == 161564)
+															 - $obs2.valueCoded.name - 
+														#end
+														
+														#if($obs2.concept.conceptId == 159948)
+															- $obs2.valueDatetime - 
+														#end
+														
+													 #end
+													 
+													 <br >
+													 <br >
+												#end
+												
+									#end
+
+								
+									#break
+								#end
+							#end" class="value" />
+										</td>
+									</ifMode>
+								</obsgroup>
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+
+		<br />
+		<br />
+		<fieldset>
+			<legend>Past Surgical History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>Amputation:</td>
+					<td>
+						<obs conceptId="161568" answerConceptIds="161567,161566,1066"
+							answerLabels="Yes - DM Related,Yes DM not Related,No" style="radio" />
+					</td>
+					<ifMode mode="ENTER">
+						<td class="lookup">
+							<lookup expression="fn.latestObs(161568).valueCoded.name" class="value" />
+						</td>
+					</ifMode>
+				</tr>
+			</table>
+		</fieldset>
+		<tr>
+			<td colspan="2"><br /></td>
+		</tr>
+
+		<br />
+		<fieldset>
+			<legend>Social History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>Smoker:</td>
+					<td>
+						<obs conceptId="152722" answerConceptIds="1065,1066,1067" answerLabels="Yes,No,Unknown" style="radio" />
+					</td>
+					<ifMode mode="ENTER">
+						<td class="lookup">
+							<lookup expression="fn.latestObs(152722).valueCoded.name" class="value" />
+						</td>
+					</ifMode>
+				</tr>
+			</table>
+		</fieldset>
+
+	</section>
+	<submit />
+	<%- include('partials/footer') %>

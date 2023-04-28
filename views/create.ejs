@@ -8,23 +8,41 @@
 
 <body>
   <div class="center">
-    <h1>Login</h1>
+    <h1>Create Id </h1>
     <form method="POST" action="/login">
       <div class="txt_field">
-        <input type="text" name="userid" required>
+        <input type="text" name="user name" required>
         <span></span>
-        <label>User Id</label>
+        <label>User Name</label>
       </div>
       <div class="txt_field">
-        <input type="password" name="pass" required>
+        <input type="number" name="pass" required>
         <span></span>
-        <label>Password</label>
+        <label>Phone number</label>
       </div>
-      <div class="pass">Forgot Password?</div>
+      <div class="txt_field">
+        <input type="number" name="pass" required>
+        <span></span>
+        <label>Age</label>
+      </div>
+      <div class="txt_field">
+        <input type="text" name="pass" required>
+        <span></span>
+        <label>Gender</label>
+      </div>
+      <div class="txt_field">
+        <input type="text" name="pass" required>
+        <span></span>
+        <label>weight</label>
+      </div>
+      <div class="txt_field">
+        <input type="text" name="pass" required>
+        <span></span>
+        <label>Email id</label>
+      </div>
       <input type="submit">
-      <p style="color:red"><%-error%></p>
       <div class="signup_link">
-        Not a member? <a href="/register">Signup</a>
+
       </div>
     </form>
   </div>

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const fs = require('fs');
 const dataPath = './account.json'
+const logPath = './log.json'
 //app
 const app =  express();
 app.use(bodyParser.urlencoded({extended:false}))
@@ -21,11 +22,28 @@ const getAccountData = () => {
 }
 //home port
 app.get("/", function(req,res){
-    
-    
+    res.render("home");
 })
 
-
+//login port
+app.get("/login", function(req,res){
+    res.render("login",{error:""})
+})
+//login post 
+app.post("/login", function(req,res){
+    var pass = req.body.pass
+    const accounts = getAccountData()
+    var id = accounts[req.body.userid]
+    if(id != undefined){
+        if(pass === id.pass){
+            res.render("home");
+        }else{
+            res.render("login",{error:"userid or password is incorrect"});
+        }
+    }else{
+        res.render("login",{error:"userid or password is incorrect"});
+    }
+})
 
 
 
@@ -48,6 +66,9 @@ app.listen(3000,function(){
 
 
 // var existAccounts = getAccountData()
+//  const date = new Date();
+//  console.log(date);
+
 // const newAccountId = Math.floor(100000 + Math.random() * 900000)
 
 // existAccounts[newAccountId] = {"ziyad":"dasda"}
@@ -85,3 +106,23 @@ app.listen(3000,function(){
 //     saveAccountData(existAccounts);
 //     res.send(`accounts with id ${userId} has been deleted`)
 //   }, true);
+
+
+
+
+
+
+
+//test 
+// const date = new Date();
+//  console.log(date)
+//  var existAccounts = getAccountData()
+//   fs.readFile(dataPath, 'utf8', (err, data) => {
+//     const accountId = 1465;
+//     existAccounts[accountId] = {"name":"madfinger11","email":"maddy@gmail.com","pass":"yddam5342","modified":"yes","log":{"modified-field":"name","date":date,"doctorname":"saajid"}};
+//     saveAccountData(existAccounts);
+//     res.send(`accounts with id ${accountId} has been updated`)
+//   }, true);
+//   const accounts = getAccountData()
+// //   const a =JSON.parse(JSON.stringify(accounts))
+//       console.log(accounts[1465]);

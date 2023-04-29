@@ -24,7 +24,9 @@ Usage
 Instructions for using the project go here. For example:
 
 Navigate to the project directory: cd projectname
+
 Run the app: node app.js
+
 Open a web browser and go to http://localhost:3000
 
 License

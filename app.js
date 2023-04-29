@@ -36,7 +36,8 @@ app.post("/login", function (req, res) {
   var id = accounts[req.body.userid];
   if (id != undefined) {
     if (pass === id.pass) {
-      res.render("home");
+
+      res.render("profile",{data:id,id:req.body.userid});
     } else {
       res.render("login", { error: "userid or password is incorrect" });
     }
@@ -59,9 +60,10 @@ app.post("/register",function(req,res){
         "email":req.body.email,
         "pass":req.body.pass,
         "num":req.body.num,
+        "address":req.body.ad,
         "age":req.body.age,
         "gender":req.body.gen,
-        "wieght":req.body.weight,
+        "weight":req.body.weight,
         "modified": "",
         "log": {
             "modified-field": "",
@@ -70,69 +72,14 @@ app.post("/register",function(req,res){
         }
     }
     saveAccountData(existAccounts);
-    res.render("home");
+    var data = existAccounts[newAccountId];
+    console.log(data)
+    res.render("profile",{data:data,id:newAccountId});
 })
 //insurance route
 app.get("/insurance", function(req,res){
     res.render("insurance");
 })
-app.get("/profile", function (req, res) {
-  res.render("Profilemed");
-  
-});
 app.listen(3000, function () {
   console.log("server spin up in port 3000");
 });
-
-// code to add data to json
-//add data
-
-// var existAccounts = getAccountData()
-//  const date = new Date();
-//  console.log(date);
-
-// const newAccountId = Math.floor(100000 + Math.random() * 900000)
-
-// existAccounts[newAccountId] = {"ziyad":"dasda"}
-
-// console.log(existAccounts);
-// saveAccountData(existAccounts);
-// res.send({success: true, msg: 'account added successfully'})
-
-//code to retrive data
-// const accounts = getAccountData()
-//   res.send(accounts)
-
-//code to update data
-
-// var existAccounts = getAccountData()
-//   fs.readFile(dataPath, 'utf8', (err, data) => {
-//     const accountId = 738189;
-//     existAccounts[accountId] = {"name":"ziyad","email":"jsfdljlkjsdf","pass":"jasdlj"};
-//     saveAccountData(existAccounts);
-//     res.send(`accounts with id ${accountId} has been updated`)
-//   }, true);
-
-// code to delete data
-
-// fs.readFile(dataPath, 'utf8', (err, data) => {
-//     var existAccounts = getAccountData()
-//     const userId = 738189;
-//     delete existAccounts[userId];
-//     saveAccountData(existAccounts);
-//     res.send(`accounts with id ${userId} has been deleted`)
-//   }, true);
-
-//test
-// const date = new Date();
-//  console.log(date)
-//  var existAccounts = getAccountData()
-//   fs.readFile(dataPath, 'utf8', (err, data) => {
-//     const accountId = 1465;
-//     existAccounts[accountId] = {"name":"madfinger11","email":"maddy@gmail.com","pass":"yddam5342","modified":"yes","log":{"modified-field":"name","date":date,"doctorname":"saajid"}};
-//     saveAccountData(existAccounts);
-//     res.send(`accounts with id ${accountId} has been updated`)
-//   }, true);
-//   const accounts = getAccountData()
-// //   const a =JSON.parse(JSON.stringify(accounts))
-//       console.log(accounts[1465]);

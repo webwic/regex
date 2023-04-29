@@ -1,0 +1,144 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MEDDOC</title>
+	<link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+	<h2>PATIENT MEDICAL HISTORY</h2>
+
+	<section headerLabel="2. Patient Information">
+		<table class="baseline-aligned">
+			<tr>
+				<td>Name:</td>
+				
+				<td>
+					<pre> <%-data.name%>	</pre>
+				</td>
+				<td>UserID:</td>
+				
+				<td>
+					<pre> <%-id%>		</pre>
+				</td>
+				<td>Email ID:</td>
+				
+				<td>
+					<pre>  <%-data.email%>		</pre>
+				</td>
+				<td>Gender:</td>
+				<td>
+					<pre>  <%-data.gender%>		</pre>
+				</td>
+			</tr>
+
+		</table>
+	</section>
+    <section headerLabel="1. Encounter Details">
+		<table class="baseline-aligned">
+			<tr>
+				<td>Number:</td>
+				
+				<td>
+					<pre> <%-data.num%> 	</pre>
+				</td>
+				<td>Address:</td>
+				<td>
+					<pre> <%-data.address%>		</pre>
+				</td>
+				<td>Age:</td>
+				<td>
+					<pre>  <%-data.age%>	</pre>
+				</td>
+				<td>Weight:</td>
+				<td>
+					<pre>  <%-data.weight%> Kg	</pre>
+				</td>
+				
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="3. Medical Information">
+
+		<br />
+		<fieldset>
+			<legend>Family History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>Family History of Diabetes Mellitus:  null</td>
+				</tr>
+			</table>
+		</fieldset>
+
+		<br />
+		<br />
+
+		<fieldset>
+			<legend>Past Medical History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>
+						<table>
+							<tr>
+								
+									<td>
+										Diabetes Mellitus: null
+									</td>
+							</tr>
+							<tr>
+								
+									<td>
+										Hypertension: null
+									</td>
+							</tr>
+							<tr>
+								
+									<td>
+										Myocardial Infarction: null
+									</td>
+							</tr>
+							<tr>
+								
+									<td>
+										CerebroVascular Accident: null
+									</td>
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+
+		<br />
+		<br />
+		<fieldset>
+			<legend>Past Surgical History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>Amputation: null</td>
+				</tr>
+			</table>
+		</fieldset>
+		<tr>
+			<td colspan="2"><br /></td>
+		</tr>
+
+		<br />
+		<fieldset>
+			<legend>Social History</legend>
+			<table class="baseline-aligned">
+				<tr>
+					<td>Smoker: null</td>
+				</tr>
+			</table>
+		</fieldset>
+
+	</section>
+	<submit />
+	</body>
+</html>
